@@ -70,7 +70,6 @@ model Category {
   updatedAt   DateTime @updatedAt
 
   subcategories Subcategory[]
-  products      Product[]
 
   @@map("categories")
 }
@@ -92,30 +91,24 @@ model Subcategory {
 
 // Product Management
 model Product {
-  id               String        @id @default(uuid())
-  categoryId       String
-  subcategoryId    String?
-  name             String
-  slug             String        @unique
-  description      String?
-  shortDescription String?
-  sku              String        @unique
-  brand            String?
-  weight           Float?
-  dimensions       String?
-  isActive         Boolean       @default(true)
-  isFeatured       Boolean       @default(false)
-  status           ProductStatus @default(DRAFT)
-  metaTitle        String?
-  metaDescription  String?
-  tags             String[]
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-
+  id             String        @id @default(uuid())
+  subcategoryId  String
+  name           String
+  slug           String        @unique
+  description    String?
+  brand          String
+  weight         Float?
+  height         Float?
+  width          Float?
+  depth          Float?
+  price          Float
+  currency       Currency       @default(PYG)       
+  stock          Int           @default(0)
+  isActive       Boolean       @default(true)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
   // Relations
-  category        Category         @relation(fields: [categoryId], references: [id])
-  subcategory     Subcategory?     @relation(fields: [subcategoryId], references: [id])
-  productDetails  ProductDetail[]
+  subcategory     Subcategory     @relation(fields: [subcategoryId], references: [id])
   productVariants ProductVariant[]
   productImages   ProductImage[]
   reviews         Review[]
@@ -126,25 +119,12 @@ model Product {
   @@map("products")
 }
 
-enum ProductStatus {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
-}
-
-model ProductDetail {
-  id        String   @id @default(uuid())
-  productId String
-  name      String
-  value     String
-  sortOrder Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
-
-  @@map("product_details")
+enum Currency {
+  PYG   // Guaraní
+  USD   // Dólar
+  BRL   // Real brasileño
+  EUR   // Euro
+  ARS   // Peso argentino
 }
 
 model ProductImage {
@@ -157,7 +137,6 @@ model ProductImage {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@map("product_images")
