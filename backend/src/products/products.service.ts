@@ -11,7 +11,7 @@ import slugify from 'slugify';
 
 @Injectable()
 export class ProductsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(dto: CreateProductDto) {
     const name = dto.name.trim();
@@ -52,6 +52,7 @@ export class ProductsService {
         slug,
         description: dto.description?.trim() || null,
         brand: dto.brand.trim(),
+        imageUrl: dto.imageUrl?.trim() ?? null,
         weight: dto.weight,
         height: dto.height,
         width: dto.width,
@@ -63,8 +64,6 @@ export class ProductsService {
       },
       include: {
         subcategory: true,
-        productImages: true,
-        productVariants: true,
       },
     });
   }
@@ -74,8 +73,6 @@ export class ProductsService {
       orderBy: { createdAt: 'desc' },
       include: {
         subcategory: true,
-        productImages: true,
-        productVariants: true,
       },
     });
   }
@@ -85,8 +82,6 @@ export class ProductsService {
       where: { id },
       include: {
         subcategory: true,
-        productImages: true,
-        productVariants: true,
       },
     });
     if (!product) throw new NotFoundException('Producto no encontrado');
@@ -98,8 +93,6 @@ export class ProductsService {
       where: { slug },
       include: {
         subcategory: true,
-        productImages: true,
-        productVariants: true,
       },
     });
     if (!product) throw new NotFoundException('Producto no encontrado');
@@ -117,13 +110,23 @@ export class ProductsService {
     const isSameBrand = !brand || brand.trim() === product.brand;
     const isSameSubcategoryId = !dto.subcategoryId;
     const isSameSubcategorySlug = !dto.subcategorySlug;
+    const isSameImageUrl = !dto.imageUrl || dto.imageUrl.trim() === product.imageUrl;
 
     if (
       isSameName &&
       isSameDescription &&
       isSameBrand &&
       isSameSubcategoryId &&
-      isSameSubcategorySlug
+      isSameSubcategorySlug &&
+      isSameImageUrl &&
+      dto.weight === undefined &&
+      dto.height === undefined &&
+      dto.width === undefined &&
+      dto.depth === undefined &&
+      dto.price === undefined &&
+      dto.currency === undefined &&
+      dto.stock === undefined &&
+      dto.isActive === undefined
     ) {
       return product;
     }
@@ -140,7 +143,7 @@ export class ProductsService {
     let subcategoryId: string | undefined;
     if (dto.subcategorySlug?.trim()) {
       const subcategory = await this.prisma.subcategory.findUnique({
-        where: { slug: dto.subcategorySlug },
+        where: { slug: dto.subcategorySlug.trim() },
       });
       if (!subcategory) throw new BadRequestException('Subcategoría no encontrada');
       subcategoryId = subcategory.id;
@@ -168,14 +171,14 @@ export class ProductsService {
         ...(dto.currency && { currency: dto.currency }),
         ...(dto.stock !== undefined && { stock: dto.stock }),
         ...(dto.isActive !== undefined && { isActive: dto.isActive }),
+        ...(dto.imageUrl !== undefined && { imageUrl: dto.imageUrl.trim() }),
       },
       include: {
         subcategory: true,
-        productImages: true,
-        productVariants: true,
       },
     });
   }
+
 
   async updateBySlug(slug: string, dto: UpdateProductDto) {
     const product = await this.prisma.product.findUnique({ where: { slug } });

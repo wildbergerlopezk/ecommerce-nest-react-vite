@@ -7,6 +7,7 @@ import {
   IsBoolean,
   IsEnum,
   Min,
+  IsUrl,
   MaxLength,
   Matches,
 } from 'class-validator';
@@ -23,6 +24,10 @@ export class CreateProductDto {
   @IsUUID('4', { message: 'subcategoryId debe ser un UUID válido' })
   subcategoryId?: string;
 
+  @IsUrl({}, { message: 'imageUrl debe ser una URL válida' })
+  @MaxLength(500, { message: 'imageUrl no debe superar los 500 caracteres' })
+  imageUrl?: string; 
+
   @IsOptional()
   @IsString({ message: 'subcategorySlug debe ser una cadena' })
   @MaxLength(100, { message: 'subcategorySlug no debe superar los 100 caracteres' })
@@ -30,7 +35,7 @@ export class CreateProductDto {
 
   @IsString({ message: 'name debe ser una cadena' })
   @IsNotEmpty({ message: 'name es obligatorio' })
-  @MaxLength(100, { message: 'name no debe superar los 100 caracteres' })
+  @MaxLength(255, { message: 'name no debe superar los 100 caracteres' })
   name: string;
 
   @IsString({ message: 'description debe ser una cadena' })

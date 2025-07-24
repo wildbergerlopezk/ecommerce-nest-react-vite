@@ -5,16 +5,21 @@ import {
   IsNumber,
   IsBoolean,
   IsEnum,
+  IsUrl, 
   Min,
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Currency } from './create-product.dto'; // o definirlo acá también
+import { Currency } from './create-product.dto'; 
 
 export class UpdateProductDto {
   @IsOptional()
   @IsUUID('4', { message: 'subcategoryId debe ser un UUID válido' })
   subcategoryId?: string;
+
+  @IsUrl({}, { message: 'imageUrl debe ser una URL válida' })
+  @MaxLength(500, { message: 'imageUrl no debe superar los 500 caracteres' })
+  imageUrl?: string;
 
   @IsOptional()
   @IsString({ message: 'subcategorySlug debe ser una cadena' })
@@ -23,7 +28,7 @@ export class UpdateProductDto {
 
   @IsOptional()
   @IsString({ message: 'name debe ser una cadena' })
-  @MaxLength(100, { message: 'name no debe superar los 100 caracteres' })
+  @MaxLength(255, { message: 'name no debe superar los 100 caracteres' })
   name?: string;
 
   @IsOptional()

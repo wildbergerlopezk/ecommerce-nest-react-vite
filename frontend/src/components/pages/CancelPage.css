@@ -1,0 +1,462 @@
+/* CANCEL PAGE STYLES */
+:root {
+  --color-bg: #0a0f1c;
+  --color-white: #ffffff;
+  --color-gray-light: #94a3b8;
+  --color-gray-dark: #334155;
+  --color-primary-start: #00bfff;
+  --color-primary-end: #1e40af;
+  --color-error: #ef4444;
+  --color-error-light: #f87171;
+  --color-error-dark: #dc2626;
+  --color-warning: #f59e0b;
+}
+
+.cancel-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+/* BACKGROUND */
+.cancel-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.cancel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 28, 0.95) 0%,
+    rgba(239, 68, 68, 0.1) 50%,
+    rgba(0, 191, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(1px);
+}
+
+/* CONTENT */
+.cancel-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.cancel-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: cancelFadeInUp 0.8s ease-out;
+}
+
+/* CANCEL ICON */
+.cancel-icon {
+  margin-bottom: 2rem;
+  animation: cancelFadeInUp 0.8s ease-out 0.2s both;
+}
+
+.cancel-x-mark {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  animation: cancelScale 0.6s ease-out 0.4s both;
+}
+
+.cancel-x-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--color-error);
+  background: linear-gradient(135deg, var(--color-error-light), var(--color-error));
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.4);
+  animation: cancelCircle 0.6s ease-out 0.6s both;
+}
+
+.cancel-x-line1,
+.cancel-x-line2 {
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background: var(--color-white);
+  left: 50%;
+  top: 50%;
+  margin-left: -15px;
+  margin-top: -1.5px;
+  border-radius: 2px;
+}
+
+.cancel-x-line1 {
+  transform: rotate(45deg);
+  animation: cancelLine1 0.3s ease-out 0.8s both;
+}
+
+.cancel-x-line2 {
+  transform: rotate(-45deg);
+  animation: cancelLine2 0.3s ease-out 1s both;
+}
+
+/* TEXT */
+.cancel-text {
+  animation: cancelFadeInUp 0.8s ease-out 0.4s both;
+}
+
+.cancel-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--color-error-light), var(--color-error-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+}
+
+.cancel-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-gray-light);
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+/* REASONS SECTION */
+.cancel-reasons {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  text-align: left;
+  animation: cancelFadeInUp 0.8s ease-out 0.6s both;
+}
+
+.cancel-reasons-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0 0 1rem 0;
+  text-align: center;
+}
+
+.cancel-reasons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cancel-reasons-list li {
+  color: var(--color-gray-light);
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.cancel-reasons-list li::before {
+  content: '•';
+  color: var(--color-warning);
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+}
+
+/* ACTION BUTTONS */
+.cancel-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  animation: cancelFadeInUp 0.8s ease-out 0.8s both;
+}
+
+.cancel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  min-width: 160px;
+  justify-content: center;
+}
+
+.cancel-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.cancel-btn:hover::before {
+  left: 100%;
+}
+
+.cancel-btn-primary {
+  background: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-end));
+  color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+.cancel-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+}
+
+.cancel-btn-secondary {
+  background: transparent;
+  color: var(--color-gray-light);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cancel-btn-secondary:hover {
+  transform: translateY(-3px);
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.cancel-btn-tertiary {
+  background: linear-gradient(90deg, var(--color-warning), #d97706);
+  color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+}
+
+.cancel-btn-tertiary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+}
+
+.cancel-btn:active {
+  transform: translateY(-1px);
+}
+
+.cancel-btn-icon {
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.cancel-btn:hover .cancel-btn-icon {
+  transform: translateX(3px);
+}
+
+/* ANIMATIONS */
+@keyframes cancelFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cancelScale {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes cancelCircle {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cancelLine1 {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes cancelLine2 {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 30px;
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .cancel-title {
+    font-size: 2.5rem;
+  }
+
+  .cancel-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cancel-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cancel-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .cancel-x-mark {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cancel-x-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cancel-x-line1,
+  .cancel-x-line2 {
+    width: 22px;
+    margin-left: -11px;
+  }
+
+  .cancel-reasons {
+    text-align: center;
+  }
+
+  .cancel-reasons-list {
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .cancel-title {
+    font-size: 2rem;
+  }
+
+  .cancel-subtitle {
+    font-size: 1rem;
+  }
+
+  .cancel-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .cancel-reasons {
+    padding: 1rem;
+  }
+
+  .cancel-reasons-title {
+    font-size: 1rem;
+  }
+
+  .cancel-reasons-list li {
+    font-size: 0.9rem;
+  }
+
+  .cancel-btn {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+    min-width: 140px;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .cancel-container,
+  .cancel-icon,
+  .cancel-text,
+  .cancel-reasons,
+  .cancel-actions,
+  .cancel-x-mark,
+  .cancel-x-circle,
+  .cancel-x-line1,
+  .cancel-x-line2 {
+    animation: none;
+  }
+
+  .cancel-btn:hover {
+    transform: none;
+  }
+}
+
+/* HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+  .cancel-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .cancel-title {
+    color: var(--color-white);
+    -webkit-text-fill-color: var(--color-white);
+    text-shadow: none;
+  }
+
+  .cancel-reasons {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .cancel-btn-primary {
+    background: var(--color-primary-start);
+  }
+
+  .cancel-btn-secondary {
+    background: transparent;
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
+
+  .cancel-btn-tertiary {
+    background: var(--color-warning);
+  }
+}

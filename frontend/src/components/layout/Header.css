@@ -1,0 +1,351 @@
+/* VARIABLES DE COLOR */
+:root {
+  --color-bg: #0a101a; /* fondo oscuro */
+  --color-primary-start: #00bfff; 
+  --color-primary-end: #0077b6; 
+  --color-white: #ffffff;
+  --color-gray-light: #cbd5e1;
+  --color-gray-dark: #334155;
+  --color-accent: #0096c7;
+}
+
+/* -------------------------------- HEADER -------------------------------- */
+.header {
+  background-color: var(--color-bg);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo-icon img {
+  width: 150px;
+  height: auto;
+  display: block;
+  transition: width 0.3s ease;
+}
+
+/* Navegación */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.nav-link {
+  color: var(--color-gray-light);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--color-primary-start);
+  transition: width 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--color-primary-start);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Acciones Header */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Búsqueda */
+.search-container {
+  position: relative;
+}
+
+.search-input {
+  padding: 0.35rem 2.5rem 0.35rem 0.75rem;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  width: 200px;
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: var(--color-gray-light);
+}
+
+.search-input:focus {
+  background-color: var(--color-gray-dark);
+}
+
+.search-btn {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--color-primary-start);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Iconos acciones */
+.header-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray-light);
+  position: relative;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.icon-btn:hover {
+  color: var(--color-primary-start);
+  background-color: var(--color-gray-dark);
+}
+
+.cart-btn {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ef4444;
+  color: var(--color-white);
+  font-size: 0.6rem;
+  padding: 2px 5px;
+  border-radius: 12px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* Botón menú móvil */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray-light);
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.mobile-menu-btn:hover {
+  color: var(--color-primary-start);
+  background-color: var(--color-gray-dark);
+}
+
+/* -------------------------------- RESPONSIVE -------------------------------- */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 992px) {
+  .logo-icon img {
+    width: 130px;
+  }
+  
+  .nav {
+    gap: 1rem;
+  }
+  
+  .search-input {
+    width: 170px;
+  }
+  
+  .header-icons .icon-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Pantallas pequeñas (móviles grandes) */
+@media (max-width: 768px) {
+  .logo-icon img {
+    width: 110px;
+  }
+  
+  .search-input {
+    width: 140px;
+    font-size: 0.8rem;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    background-color: var(--color-bg);
+    height: calc(100vh - 60px);
+    width: 220px;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    box-shadow: -3px 0 12px rgba(0,0,0,0.8);
+    z-index: 9999;
+  }
+
+  .nav.nav-open {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    color: var(--color-white);
+    padding: 0.75rem 0;
+    display: block;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    margin-left: 0.5rem;
+  }
+  
+  /* Animación de entrada para los enlaces del menú móvil */
+  .nav.nav-open .nav-link {
+    animation: fadeIn 0.4s ease forwards;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  
+  .nav.nav-open .nav-link:nth-child(1) { animation-delay: 0.1s; }
+  .nav.nav-open .nav-link:nth-child(2) { animation-delay: 0.2s; }
+  .nav.nav-open .nav-link:nth-child(3) { animation-delay: 0.3s; }
+  .nav.nav-open .nav-link:nth-child(4) { animation-delay: 0.4s; }
+  .nav.nav-open .nav-link:nth-child(5) { animation-delay: 0.5s; }
+}
+
+/* Pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+  .logo-icon img {
+    width: 100px;
+  }
+  
+  .search-container {
+    display: none; /* Ocultar búsqueda en móviles pequeños */
+  }
+  
+  .nav {
+    width: 100%;
+    right: -100%;
+    padding: 1rem;
+  }
+  
+  .nav.nav-open {
+    right: 0;
+  }
+  
+  .header-icons {
+    gap: 0.5rem;
+  }
+
+  .header-icons .icon-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .mobile-menu-btn {
+    margin-left: 0;
+  }
+}
+
+/* Pantallas extra pequeñas */
+@media (max-width: 360px) {
+  .logo-icon img {
+    width: 90px;
+  }
+  
+  .header-container {
+    gap: 0.5rem;
+  }
+  
+  .header-icons .icon-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Animación para elementos del menú móvil */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Menú de búsqueda para móviles */
+@media (max-width: 480px) {
+  .search-container.mobile-search {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-bg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  
+  .search-container.mobile-search .search-input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+  }
+}

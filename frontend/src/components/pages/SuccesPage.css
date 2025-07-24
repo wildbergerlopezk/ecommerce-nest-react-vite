@@ -1,0 +1,426 @@
+/* SUCCESS PAGE STYLES */
+:root {
+  --color-bg: #0a0f1c;
+  --color-white: #ffffff;
+  --color-gray-light: #94a3b8;
+  --color-gray-dark: #334155;
+  --color-primary-start: #00bfff;
+  --color-primary-end: #1e40af;
+  --color-success: #10b981;
+  --color-success-light: #34d399;
+  --color-success-dark: #059669;
+}
+
+.success-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+/* BACKGROUND */
+.success-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.success-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 28, 0.95) 0%,
+    rgba(16, 185, 129, 0.1) 50%,
+    rgba(0, 191, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(1px);
+}
+
+/* CONTENT */
+.success-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.success-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  animation: successFadeInUp 0.8s ease-out;
+}
+
+/* SUCCESS ICON */
+.success-icon {
+  margin-bottom: 2rem;
+  animation: successFadeInUp 0.8s ease-out 0.2s both;
+}
+
+.success-checkmark {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  animation: successScale 0.6s ease-out 0.4s both;
+}
+
+.success-checkmark-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--color-success);
+  background: linear-gradient(135deg, var(--color-success-light), var(--color-success));
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+  animation: successCircle 0.6s ease-out 0.6s both;
+}
+
+.success-checkmark-stem {
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  background: var(--color-white);
+  left: 50%;
+  top: 50%;
+  margin-left: -2px;
+  margin-top: -5px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  animation: successStem 0.3s ease-out 0.8s both;
+}
+
+.success-checkmark-kick {
+  position: absolute;
+  width: 12px;
+  height: 3px;
+  background: var(--color-white);
+  left: 50%;
+  top: 50%;
+  margin-left: -8px;
+  margin-top: 2px;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  animation: successKick 0.3s ease-out 1s both;
+}
+
+/* TEXT */
+.success-text {
+  animation: successFadeInUp 0.8s ease-out 0.4s both;
+}
+
+.success-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--color-success-light), var(--color-success-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.success-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-gray-light);
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+/* SESSION DETAILS */
+.success-details {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  animation: successFadeInUp 0.8s ease-out 0.6s both;
+}
+
+.success-session {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-gray-light);
+}
+
+.success-session-label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+.success-session-id {
+  color: var(--color-primary-start);
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  background: rgba(0, 191, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+}
+
+/* ACTION BUTTONS */
+.success-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  animation: successFadeInUp 0.8s ease-out 0.8s both;
+}
+
+.success-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.success-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.success-btn:hover::before {
+  left: 100%;
+}
+
+.success-btn-primary {
+  background: linear-gradient(90deg, var(--color-success), var(--color-success-dark));
+  color: var(--color-white);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.success-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+}
+
+.success-btn-secondary {
+  background: transparent;
+  color: var(--color-gray-light);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.success-btn-secondary:hover {
+  transform: translateY(-3px);
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.success-btn:active {
+  transform: translateY(-1px);
+}
+
+.success-btn-icon {
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.success-btn:hover .success-btn-icon {
+  transform: translateX(3px);
+}
+
+/* ANIMATIONS */
+@keyframes successFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes successScale {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes successCircle {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes successStem {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes successKick {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 12px;
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .success-title {
+    font-size: 2.5rem;
+  }
+
+  .success-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .success-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .success-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .success-checkmark {
+    width: 60px;
+    height: 60px;
+  }
+
+  .success-checkmark-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .success-checkmark-stem {
+    height: 15px;
+    margin-top: -3px;
+  }
+
+  .success-checkmark-kick {
+    width: 9px;
+    margin-left: -6px;
+    margin-top: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .success-title {
+    font-size: 2rem;
+  }
+
+  .success-subtitle {
+    font-size: 1rem;
+  }
+
+  .success-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .success-details {
+    padding: 1rem;
+  }
+
+  .success-session-id {
+    display: block;
+    margin-top: 0.5rem;
+    word-break: break-all;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .success-container,
+  .success-icon,
+  .success-text,
+  .success-details,
+  .success-actions,
+  .success-checkmark,
+  .success-checkmark-circle,
+  .success-checkmark-stem,
+  .success-checkmark-kick {
+    animation: none;
+  }
+
+  .success-btn:hover {
+    transform: none;
+  }
+}
+
+/* HIGH CONTRAST MODE */
+@media (prefers-contrast: high) {
+  .success-overlay {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .success-title {
+    color: var(--color-white);
+    -webkit-text-fill-color: var(--color-white);
+    text-shadow: none;
+  }
+
+  .success-details {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .success-btn-primary {
+    background: var(--color-success);
+  }
+
+  .success-btn-secondary {
+    background: transparent;
+    border-color: var(--color-white);
+    color: var(--color-white);
+  }
+}

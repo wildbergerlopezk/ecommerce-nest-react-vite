@@ -6,7 +6,7 @@ import { PrismaService } from 'prisma/prisma.service';
 
 @Injectable()
 export class CategoriesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(dto: CreateCategoryDto) {
     const slug = slugify(dto.name, { lower: true, strict: true });
@@ -40,14 +40,21 @@ export class CategoriesService {
   }
 
   async findBySlug(slug: string) {
-  const category = await this.prisma.category.findUnique({
-    where: { slug },
-  });
+    const category = await this.prisma.category.findUnique({
+      where: { slug },
+      include: {
+        subcategories: {
+          include: {
+            products: true,
+          },
+        },
+      },
+    });
 
-  if (!category) throw new NotFoundException('Categoría no encontrada');
+    if (!category) throw new NotFoundException('Categoría no encontrada');
 
-  return category;  
-  } 
+    return category;
+  }
 
   async update(id: string, dto: UpdateCategoryDto) {
     const category = await this.prisma.category.findUnique({ where: { id } });
@@ -57,7 +64,6 @@ export class CategoriesService {
     if (dto.name) {
       slug = slugify(dto.name, { lower: true, strict: true });
 
-      // Verificar que el slug nuevo no choque con otro registro distinto
       const existing = await this.prisma.category.findUnique({
         where: { slug },
       });
@@ -77,27 +83,27 @@ export class CategoriesService {
   }
 
   async updateBySlug(slug: string, dto: UpdateCategoryDto) {
-  const category = await this.prisma.category.findUnique({ where: { slug } });
-  if (!category) throw new NotFoundException('Categoría no encontrada');
+    const category = await this.prisma.category.findUnique({ where: { slug } });
+    if (!category) throw new NotFoundException('Categoría no encontrada');
 
-  let newSlug: string | undefined;
-  if (dto.name) {
-    newSlug = slugify(dto.name, { lower: true, strict: true });
+    let newSlug: string | undefined;
+    if (dto.name) {
+      newSlug = slugify(dto.name, { lower: true, strict: true });
 
-    const existing = await this.prisma.category.findUnique({ where: { slug: newSlug } });
-    if (existing && existing.id !== category.id) {
-      throw new BadRequestException('Otra categoría ya tiene ese nombre');
+      const existing = await this.prisma.category.findUnique({ where: { slug: newSlug } });
+      if (existing && existing.id !== category.id) {
+        throw new BadRequestException('Otra categoría ya tiene ese nombre');
+      }
     }
-  }
 
-  return this.prisma.category.update({
-    where: { slug },
-    data: {
-      ...dto,
-      ...(newSlug && { slug: newSlug }),
-    },
-  });
-}
+    return this.prisma.category.update({
+      where: { slug },
+      data: {
+        ...dto,
+        ...(newSlug && { slug: newSlug }),
+      },
+    });
+  }
 
   async remove(id: string) {
     const category = await this.prisma.category.findUnique({ where: { id } });
@@ -107,10 +113,11 @@ export class CategoriesService {
   }
 
   async removeBySlug(slug: string) {
-  const category = await this.prisma.category.findUnique({ where: { slug } });
-  if (!category) throw new NotFoundException('Categoría no encontrada');
+    const category = await this.prisma.category.findUnique({ where: { slug } });
+    if (!category) throw new NotFoundException('Categoría no encontrada');
 
-  return this.prisma.category.delete({ where: { slug } });
+    return this.prisma.category.delete({ where: { slug } });
   }
 
 }
+  
