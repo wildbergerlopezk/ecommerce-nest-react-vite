@@ -264,7 +264,7 @@ Este software se proporciona "tal como está", sin garantías de ningún tipo, e
 - 🏢 Fundador de ELYTECH SOFTWARE AND SOLUTIONS
 - 💼 Desarrollador Full Stack | Emprendedor 
 - 🎓 Estudiante de Ingeniería Informática
-- 🌐 [LinkedIn](www.linkedin.com/in/kevin-olaf-wildberger-lópez-2a25a3186) 
+- 🌐 [LinkedIn]([www.linkedin.com/in/kevin-olaf-wildberger-lópez-2a25a3186](https://www.linkedin.com/in/kevin-olaf-wildberger-lópez-2a25a3186)) 
 
 ---
 
