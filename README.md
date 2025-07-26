@@ -252,7 +252,7 @@ Si encuentras algún bug o tienes sugerencias, por favor:
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto es de uso libre
 
 ## ⚠️ Disclaimer
 
