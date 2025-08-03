@@ -128,7 +128,7 @@ const ProductList: React.FC<ProductListProps> = ({
       </div>
     );
   }
-
+  
   return (
     <div className="product-list-container">
       {title && <h2>{title}</h2>}

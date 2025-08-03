@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-user}
+      POSTGRES_PASSWORD: ${DB_PASS:-pass}
+      POSTGRES_DB: ${DB_NAME:-ecommerce}
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend-ecommerce
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://${DB_USER:-user}:${DB_PASS:-pass}@db:5432/${DB_NAME:-ecommerce}
+      STRIPE_SECRET_KEY: sk_test_XXXXXXXXXXXXXXXXXXXXXX
+      PORT: 3000
+    ports:
+      - "3001:3000"
+    command: node dist/src/main.js
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-ecommerce
+    depends_on:
+      - backend
+    environment:
+      VITE_API_URL: http://backend:3000
+    ports:
+      - "8080:80" 
+    command: nginx -g 'daemon off;'
+    restart: always
+
+volumes:
+  db_data:
