@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ['http://localhost:8080', 'http://192.168.0.110:8080', ' https://c95de2aa99b2.ngrok-free.app'],
+    origin: ['https://ecommerce-frontend-cq3jqcjhw-wildbergerlopezks-projects.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
