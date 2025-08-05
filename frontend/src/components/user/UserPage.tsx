@@ -32,7 +32,7 @@ const UserPage: React.FC = () => {
       setUser(parsedUser);
       console.log('User cargado:', parsedUser);
 
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const apiUrl = import.meta.env.VITE_API_URL;
 
       fetch(`${apiUrl}/orders?userId=${parsedUser.id}`, {
         headers: {
